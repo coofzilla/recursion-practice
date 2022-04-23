@@ -24,7 +24,16 @@ var sum = function (array) {
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
-var arraySum = function (array) {};
+var arraySum = function (array) {
+  //   const result = array.flat(Infinity);
+  const flatten = (arr) =>
+    Array.isArray(arr) ? [].concat(...arr.map(flatten)) : arr;
+  const flatArr = flatten(array);
+  let total = flatArr[0];
+  if (!flatArr.length) return 0;
+  return (total += arraySum(flatArr.slice(1)));
+  //   return sum(flatArr);
+};
 
 // 4. Check if a number is even.
 var isEven = function (n) {};
